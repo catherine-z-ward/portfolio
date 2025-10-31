@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catherine Ward - Multimedia Storyteller</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0d0d0d;
+            color: #e8e8e8;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .bg-atmosphere {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 15% 40%, rgba(139, 38, 53, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 85% 60%, rgba(45, 80, 22, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            backdrop-filter: blur(20px);
+            background: rgba(13, 13, 13, 0.8);
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #fff;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links > li {
+            position: relative;
+        }
+
+        .nav-links a {
+            color: rgba(232, 232, 232, 0.8);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* Dropdown styling */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 1rem;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem 0;
+            min-width: 200px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.7rem 1.5rem;
+            color: rgba(232, 232, 232, 0.8);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+            text-transform: none;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(45, 80, 22, 0.2);
+            color: #fff;
+            padding-left: 2rem;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 600;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: #fff;
+        }
+
+        .hero .tagline {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-weight: 300;
+            color: rgba(232, 232, 232, 0.7);
+            margin-bottom: 3rem;
+            max-width: 800px;
+        }
+
+        .hero .story {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: rgba(232, 232, 232, 0.65);
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        section {
+            padding: 8rem 3rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            max-width: 800px;
+        }
+
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        .section-intro {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(232, 232, 232, 0.6);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .photo-item {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.4s ease, z-index 0s;
+            aspect-ratio: 3/2;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        /* Hover state with 1 second delay */
+        .photo-item.hover-active {
+            transform: scale(1.5);
+            z-index: 50;
+            overflow: visible;
+        }
+
+        .photo-item.hover-active img {
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+            object-fit: contain;
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: #fff;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 0 0 4px 4px;
+        }
+
+        .photo-item:hover .photo-caption {
+            opacity: 1;
+        }
+
+        .photo-caption h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .photo-caption p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .work-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 2.5rem;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .work-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(139, 38, 53, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .work-card h3 {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .work-card p {
+            color: rgba(232, 232, 232, 0.65);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .work-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+
+        .tag {
+            background: rgba(139, 38, 53, 0.15);
+            color: rgba(139, 38, 53, 0.9);
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .tag-green {
+            background: rgba(45, 80, 22, 0.15);
+            color: rgba(127, 176, 105, 0.9);
+        }
+
+        .expandable {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .expand-indicator {
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            width: 24px;
+            height: 24px;
+            border: 1px solid rgba(139, 38, 53, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(139, 38, 53, 0.7);
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+
+        .expandable.open .expand-indicator {
+            transform: rotate(45deg);
+            background: rgba(139, 38, 53, 0.1);
+        }
+
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .expandable.open .expandable-content {
+            max-height: 2000px;
+        }
+
+        .sub-item {
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .sub-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.7rem;
+            color: rgba(232, 232, 232, 0.9);
+        }
+
+        .sub-item p {
+            font-size: 0.95rem;
+            color: rgba(232, 232, 232, 0.5);
+        }
+
+        .journey {
+            background: rgba(255, 255, 255, 0.01);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-group h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #8B2635;
+            margin-bottom: 1rem;
+        }
+
+        .skill-group ul {
+            list-style: none;
+        }
+
+        .skill-group li {
+            padding: 0.4rem 0;
+            color: rgba(232, 232, 232, 0.6);
+            font-size: 0.95rem;
+        }
+
+        #contact {
+            padding: 4rem 3rem;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item a {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            color: #8B2635;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: #a13545;
+        }
+
+        .contact-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(232, 232, 232, 0.4);
+            margin-top: 0.5rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            font-size: 0.85rem;
+            color: rgba(232, 232, 232, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        @media (max-width: 1200px) {
+            .photo-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.75rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #contact {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-atmosphere"></div>
+
+    <div class="content">
+        <nav>
+            <div class="nav-container">
+                <div class="logo">Catherine Ward</div>
+                <ul class="nav-links">
+                    <li class="dropdown">
+                        <a href="#photography">Photography</a>
+                        <div class="dropdown-content">
+                            <a href="#pakistan">Pakistan</a>
+                            <a href="#oman">Oman</a>
+                            <a href="#india">India</a>
+                            <a href="#landscapes">Landscapes</a>
+                            <a href="#other-travel">Other Travel</a>
+                            <a href="#editorial-portraits">Editorial / Portraits</a>
+                        </div>
+                    </li>
+                    <li><a href="#writing">Writing</a></li>
+                    <li><a href="#sound">Sound</a></li>
+                    <li><a href="#design">Design</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <h1 style="text-align: center;">Capturing stories<br>across sound<br>& sight</h1>
+            <p class="tagline" style="text-align: center; margin-left: auto; margin-right: auto;">Photographer. Audio Engineer. Creative Technologist.</p>
+            <div style="display: flex; gap: 3rem; align-items: center; margin-top: 2rem;">
+                <p class="story">
+                    I study creative technology and recorded music at NYU's Clive Davis Institute, but most of what I've learned has come from the classroom of life—spending a year in Shanghai, recording in studios across two continents, and traveling through 45 countries with my camera and curiosity. I'm interested in the places where sound meets image, where technology enables art, and where stories emerge from the spaces between cultures.
+                </p>
+                <img src="Catherine_Pakistan.jpeg" alt="Catherine Ward" style="width: 300px; height: 300px; object-fit: cover; border-radius: 8px; flex-shrink: 0;">
+            </div>
+        </section>
+
+        <section id="photography">
+            <div class="section-header">
+                <h2 class="section-title">Photography</h2>
+                <p class="section-intro">Exploring culture, humanity, the environment, and life by documenting daily life in different countries around the world. Shot on Nikon D750, Sony RX100 VII, and DJI Mini 4 Pro.</p>
+            </div>
+            
+            <!-- Pakistan Section -->
+            <div id="pakistan" style="margin-bottom: 4rem;">
+                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 2rem; color: #2D5016;">Pakistan</h3>
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <img src="Pakistan/Pakistan_1.JPG" alt="Pakistan">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Pakistan/Pakistan_2.JPG" alt="Pakistan">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Pakistan/Pakistan_3.JPG" alt="Pakistan">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Pakistan/Pakistan_4.JPG" alt="Pakistan">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Pakistan/Pakistan_5.JPG" alt="Pakistan">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Pakistan/Pakistan_6.JPG" alt="Pakistan">
+                    </div>
+                </div>
+
+                <h4 style="font-family: 'Crimson Text', serif; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 2rem; color: #2D5016;">Skardu Protest</h4>
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <img src="Skardu Protest/SkarduProtest-01.jpg" alt="Skardu Protest">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Skardu Protest/SkarduProtest-02.jpg" alt="Skardu Protest">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Skardu Protest/SkarduProtest-03.jpg" alt="Skardu Protest">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Skardu Protest/SkarduProtest-04.jpg" alt="Skardu Protest">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Skardu Protest/SkarduProtest-05.jpg" alt="Skardu Protest">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Skardu Protest/SkarduProtest-06.jpg" alt="Skardu Protest">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Skardu Protest/SkarduProtest-07.jpg" alt="Skardu Protest">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Skardu Protest/SkarduProtest-08.jpg" alt="Skardu Protest">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Skardu Protest/SkarduProtest-09.jpg" alt="Skardu Protest">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Skardu Protest/SkarduProtest-10.jpg" alt="Skardu Protest">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Skardu Protest/SkarduProtest-11.jpg" alt="Skardu Protest">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oman Section -->
+            <div id="oman" style="margin-bottom: 4rem;">
+                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 2rem; color: #2D5016;">Oman</h3>
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <img src="Oman/Oman-01.jpg" alt="Oman">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Oman/Oman-02.jpg" alt="Oman">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Oman/Oman-03.jpg" alt="Oman">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Oman/Oman-04.jpg" alt="Oman">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Oman/Oman-05.jpg" alt="Oman">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Oman/Oman-06.jpg" alt="Oman">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Oman/Oman-07.jpg" alt="Oman">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Oman/Oman-08.jpg" alt="Oman">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Oman/Oman-09.jpg" alt="Oman">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Oman/Oman-10.jpg" alt="Oman">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Oman/Oman-11.jpg" alt="Oman">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Oman/Oman-12.jpg" alt="Oman">
+                    </div>
+                </div>
+            </div>
+
+            <!-- India Section -->
+            <div id="india" style="margin-bottom: 4rem;">
+                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 2rem; color: #2D5016;">India</h3>
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-01.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-02.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-03.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-04.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-05.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-06.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-07.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-08.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-09.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-10.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-11.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-12.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-13.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-14.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-15.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-16.jpg" alt="India">
+                    </div>
+                    <div class="photo-item">
+                        <img src="India/India (B&W)-17.jpg" alt="India">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Landscapes Section -->
+            <div id="landscapes" style="margin-bottom: 4rem;">
+                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 2rem; color: #8B2635;">Landscapes</h3>
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <div class="photo-caption">
+                            <h3>Mountain Aerials</h3>
+                            <p>Drone photography from alpine environments</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Travel Section -->
+            <div id="other-travel" style="margin-bottom: 4rem;">
+                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 2rem; color: #2D5016;">Other Travel</h3>
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <div class="photo-caption">
+                            <h3>China</h3>
+                            <p>Life in Shanghai and beyond</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Editorial / Portraits Section -->
+            <div id="editorial-portraits">
+                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 2rem; color: #8B2635;">Editorial / Portraits</h3>
+                <div class="photo-grid">
+                    <div class="photo-item">
+                        <img src="Editorial/Varya_1.jpg" alt="Portrait">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Editorial/Varya_2.jpg" alt="Portrait">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Editorial/Varya_3.jpg" alt="Portrait">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Editorial/Varya_4.jpg" alt="Portrait">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Editorial/Varya_5.jpg" alt="Portrait">
+                    </div>
+                    <div class="photo-item">
+                        <img src="Editorial/Varya_6.jpg" alt="Portrait">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="writing">
+            <div class="section-header">
+                <h2 class="section-title">Writing</h2>
+                <p class="section-intro">Travel narratives and cultural essays exploring connection across borders. Published work and book-in-progress examining the effects of travel and cultural immersion on young people.</p>
+            </div>
+            <div class="work-grid">
+                <div class="work-card">
+                    <img src="Writing/nomadic_inbetween.png" alt="The Nomadic In-Between" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 1.5rem;">
+                    <h3>The Nomadic In-Between</h3>
+                    <p>A book-in-progress examining how travel and cultural immersion shape the identities and perspectives of kids and teens who grow up between worlds.</p>
+                    <div class="work-tags">
+                        <span class="tag-green">Book Project</span>
+                        <span class="tag-green">Cultural Identity</span>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <img src="Writing/hitchhiking_hospitality.png" alt="Hitchhiking & Hospitality" style="width: 100%; height: 200px; object-fit: cover; border-radius: 4px; margin-bottom: 1.5rem;">
+                    <h3>Hitchhiking & Hospitality: 6 Weeks in Pakistan</h3>
+                    <p>A photojournalistic narrative exploring the generosity and complexity of Pakistani culture through six weeks of hitchhiking and local hospitality.</p>
+                    <div class="work-tags">
+                        <span class="tag-green">Travel Writing</span>
+                        <span class="tag-green">Photojournalism</span>
+                        <span class="tag-green">Pakistan</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sound" style="background: rgba(255, 255, 255, 0.01);">
+            <div class="section-header">
+                <h2 class="section-title">Sound Work</h2>
+                <p class="section-intro">Recording in professional studios and engineering live concerts.</p>
+            </div>
+            <div class="work-grid">
+                <div class="work-card expandable" onclick="toggleExpand(this)">
+                    <div class="expand-indicator">+</div>
+                    <h3>Studio Engineering</h3>
+                    <p>Recording, mixing, and mastering across professional studios in NYC and Shanghai, including Clive Davis Institute, JZ Music Shanghai, and Anderson Audio.</p>
+                    <div class="work-tags">
+                        <span class="tag">Clive Davis Institute</span>
+                        <span class="tag">JZ Music Shanghai</span>
+                    </div>
+                    <div class="expandable-content">
+                        <div class="sub-item">
+                            <h4>Consoles</h4>
+                            <p>Neve 5088, SSL 9000K, 8078 Oscilloscope, API Legacy AXS, M32, StudioLive 32</p>
+                        </div>
+                        <div class="sub-item">
+                            <h4>Software</h4>
+                            <p>Logic Pro X, Pro Tools, Ableton (beginner)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <h3>Concert Engineering</h3>
+                    <p>Worked as an A3 at Rocky Mountain Sound for audiences of 5,000+. Stage setup, signal flow, and real-time mixing.</p>
+                    <div class="work-tags">
+                        <span class="tag">Live Mixing</span>
+                        <span class="tag">Colorado</span>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <h3>Immersive Audio</h3>
+                    <p>Assisted Grammy Award-Winning engineer Jim Anderson on multiple immersive audio projects at CDI and Sear Sound.</p>
+                    <div class="work-tags">
+                        <span class="tag">Spatial Audio</span>
+                        <span class="tag">Innovation</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="design">
+            <div class="section-header">
+                <h2 class="section-title">Design & Technology</h2>
+                <p class="section-intro">Building things that blend physical and digital, sound and visual, technology and art.</p>
+            </div>
+            <div class="work-grid">
+                <div class="work-card expandable" onclick="toggleExpand(this)">
+                    <div class="expand-indicator">+</div>
+                    <h3>Lights Camera Action!</h3>
+                    <p>Entrepreneurial proposal for a free, interactive museum teaching STEM behind artistic careers through 8+ large-scale installations.</p>
+                    <div class="work-tags">
+                        <span class="tag">Interactive Design</span>
+                        <span class="tag">Education</span>
+                    </div>
+                    <div class="expandable-content">
+                        <div class="sub-item">
+                            <h4>Cameo Camera</h4>
+                            <p>16.5' x 11.5' x 7' climbable camera structure teaching photography fundamentals</p>
+                        </div>
+                        <div class="sub-item">
+                            <h4>Cinematic Sounds Board</h4>
+                            <p>Interactive soundboard with beat pads, faders, MIDI keyboard, and color-reactive lighting</p>
+                        </div>
+                        <div class="sub-item">
+                            <h4>Animation Station</h4>
+                            <p>Physical pulley system controlling 3D characters, demonstrating animation mathematics</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <h3>Synesthesia Algorithm</h3>
+                    <p>AI-driven p5.js project that transforms sound into dynamic visual art through real-time MIDI and microphone inputs. Explores the intersection of auditory and visual experiences, bringing awareness to the sensory phenomenon of synesthesia.</p>
+                    <div class="work-tags">
+                        <span class="tag">p5.js</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">Interactive</span>
+                    </div>
+                    <div style="margin-top: 1.5rem;">
+                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/Fs2ou89rYdw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius: 8px;"></iframe>
+                    </div>
+                </div>
+
+                <div class="work-card expandable" onclick="toggleExpand(this)">
+                    <div class="expand-indicator">+</div>
+                    <h3>Assistive Devices</h3>
+                    <p>Collaborative product design projects in Shanghai focusing on accessibility and human-centered solutions.</p>
+                    <div class="work-tags">
+                        <span class="tag">Fusion 360</span>
+                        <span class="tag">Shanghai</span>
+                    </div>
+                    <div class="expandable-content">
+                        <div class="sub-item">
+                            <h4>Therapalm</h4>
+                            <p>Hand pain relief device with heating, cooling, massage for arthritis patients</p>
+                        </div>
+                        <div class="sub-item">
+                            <h4>Echotech</h4>
+                            <p>Glasses + watch system translating sound to color and vibration for hearing impaired</p>
+                        </div>
+                        <div class="sub-item">
+                            <h4>TrekRest</h4>
+                            <p>Foldable backpack support and table system for ultralight hikers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <h3>Buzzkill: Don't Text Your Ex</h3>
+                    <p>Interactive drunk text prevention app that blocks messages until users prove sobriety through escalating challenges. Features AI-generated responses, adaptive difficulty based on message content, and a drunk-to-sober text translator for deciphering typo-laden messages.</p>
+                    <div class="work-tags">
+                        <span class="tag">p5.js</span>
+                        <span class="tag">ChatGPT API</span>
+                        <span class="tag">UX Design</span>
+                    </div>
+                </div>
+
+                <div class="work-card">
+                    <h3>中国龙 Animatronic Dragon</h3>
+                    <p>Large-scale suspended dragon built in Shanghai using Arduino, p5.js, stepper motors, motion sensors, and more.</p>
+                    <div class="work-tags">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">Robotics</span>
+                        <span class="tag">Shanghai</span>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem;">
+                        <img src="Dragon Project/dragon_project_documentation1.jpg" alt="Dragon Project" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px;">
+                        <img src="Dragon Project/dragon_project_documentation3.jpeg" alt="Dragon Project" style="width: 100%; height: 150px; object-fit: cover; border-radius: 4px;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="journey">
+            <div class="section-header">
+                <h2 class="section-title">Technical Skills</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-group">
+                    <h4>Audio</h4>
+                    <ul>
+                        <li>Logic Pro X</li>
+                        <li>Pro Tools</li>
+                        <li>Ableton</li>
+                        <li>Neve 5088</li>
+                        <li>SSL 9000K</li>
+                        <li>API Legacy AXS</li>
+                        <li>8078 Oscilloscope</li>
+                        <li>M32, StudioLive 32</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h4>Visual</h4>
+                    <ul>
+                        <li>Adobe Creative Cloud</li>
+                        <li>Final Cut Pro</li>
+                        <li>DaVinci Resolve</li>
+                        <li>CapCut</li>
+                        <li>Photo Mechanic</li>
+                        <li>Nikon D750</li>
+                        <li>Sony RX100 VII</li>
+                        <li>DJI Mini 4 Pro</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h4>Design & Code</h4>
+                    <ul>
+                        <li>Autodesk Fusion 360</li>
+                        <li>p5.js (Beginning Intermediate)</li>
+                        <li>Python (Beginning Intermediate)</li>
+                        <li>Arduino IDE (Beginning Intermediate)</li>
+                        <li>WordPress</li>
+                        <li>Web Design</li>
+                        <li>Canva</li>
+                        <li>Microsoft Office</li>
+                        <li>3D Modeling</li>
+                    </ul>
+                </div>
+                <div class="skill-group">
+                    <h4>Languages</h4>
+                    <ul>
+                        <li>English (Native)</li>
+                        <li>Mandarin Chinese (Intermediate)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="section-header" style="text-align: center; max-width: 100%; margin-bottom: 1rem;">
+                <h2 class="section-title" style="font-size: 2.5rem;">Let's Connect</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <a href="mailto:czw2007@nyu.edu">czw2007@nyu.edu</a>
+                    <p class="contact-label">Email</p>
+                </div>
+                <div class="contact-item">
+                    <a href="https://instagram.com/catherinezward" target="_blank">@catherinezward</a>
+                    <p class="contact-label">Instagram</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 Catherine Ward • NYU Class of December 2025 • New York & Shanghai</p>
+        </footer>
+    </div>
+
+    <script>
+        let hoverTimer = null;
+        let currentHoveredItem = null;
+
+        // Add hover handlers to all photo items
+        document.querySelectorAll('.photo-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                currentHoveredItem = this;
+                hoverTimer = setTimeout(() => {
+                    if (currentHoveredItem === this) {
+                        this.classList.add('hover-active');
+                    }
+                }, 500); // 0.5 second delay
+            });
+
+            item.addEventListener('mouseleave', function() {
+                clearTimeout(hoverTimer);
+                currentHoveredItem = null;
+                this.classList.remove('hover-active');
+            });
+        });
+
+        function toggleExpand(card) {
+            const isOpen = card.classList.contains('open');
+            
+            // Close all open cards
+            document.querySelectorAll('.expandable.open').forEach(openCard => {
+                openCard.classList.remove('open');
+            });
+            
+            // If card wasn't open, open it
+            if (!isOpen) {
+                card.classList.add('open');
+            }
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
