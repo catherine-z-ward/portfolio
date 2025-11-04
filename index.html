@@ -549,6 +549,57 @@
                 grid-template-columns: 1fr !important;
             }
         }
+
+        /* Collapsible Photo Sections */
+        .photo-section-content {
+            display: none;
+            overflow: hidden;
+        }
+
+        .photo-section-content.active {
+            display: block;
+        }
+
+        .toggle-photos-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: #2D5016;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .toggle-photos-btn:hover {
+            background: #3d6b1e;
+            transform: translateY(-2px);
+        }
+
+        .toggle-photos-btn[style*="#8B2635"]:hover {
+            background: #6B1D28 !important;
+        }
+
+        .toggle-photos-btn svg {
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-photos-btn.active svg {
+            transform: rotate(180deg);
+        }
+
+        .photo-section-description {
+            font-size: 1rem;
+            color: rgba(232, 232, 232, 0.7);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
     </style>
 </head>
 <body>
@@ -557,7 +608,7 @@
     <div class="content">
         <nav>
             <div class="nav-container">
-                <div class="logo">Catherine Z. Ward</div>
+                <div class="logo" style="font-style: italic;">Multimedia Storyteller</div>
                 <ul class="nav-links">
                     <li class="dropdown">
                         <a href="#photography">Photography</a>
@@ -579,7 +630,7 @@
         </nav>
 
         <section class="hero">
-            <h1 style="text-align: center;">Capturing stories<br>across sound<br>& sight</h1>
+            <h1 style="text-align: center;">Catherine Z Ward</h1>
             <p class="tagline" style="text-align: center; margin-left: auto; margin-right: auto;">International Photographer. Writer. Recording Engineer. Designer. Creative Technologist.</p>
             <div style="display: flex; gap: 3rem; align-items: center; margin-top: 2rem;">
                 <p class="story">
@@ -597,30 +648,40 @@
             
             <!-- Pakistan Section -->
             <div id="pakistan" style="margin-bottom: 4rem;">
-                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 2rem; color: #2D5016;">Pakistan</h3>
-                <div class="photo-grid">
-                    <div class="photo-item">
-                        <img src="Pakistan/Pakistan_1.JPG" alt="Pakistan">
+                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 1rem; color: #2D5016;">Pakistan</h3>
+                <p class="photo-section-description">6 weeks hitchhiking 2,000 kilometers across Pakistan, documenting culture, landscapes, and the remarkable hospitality of its people.</p>
+                
+                <button class="toggle-photos-btn" onclick="togglePhotoSection('pakistan')">
+                    Show Photos
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <div class="photo-section-content" id="pakistan-content">
+                    <div class="photo-grid">
+                        <div class="photo-item">
+                            <img src="Pakistan/Pakistan_1.JPG" alt="Pakistan">
+                        </div>
+                        <div class="photo-item">
+                            <img src="Pakistan/Pakistan_2.JPG" alt="Pakistan">
+                        </div>
+                        <div class="photo-item">
+                            <img src="Pakistan/Pakistan_3.JPG" alt="Pakistan">
+                        </div>
+                        <div class="photo-item">
+                            <img src="Pakistan/Pakistan_4.JPG" alt="Pakistan">
+                        </div>
+                        <div class="photo-item">
+                            <img src="Pakistan/Pakistan_5.JPG" alt="Pakistan">
+                        </div>
+                        <div class="photo-item">
+                            <img src="Pakistan/Pakistan_6.JPG" alt="Pakistan">
+                        </div>
                     </div>
-                    <div class="photo-item">
-                        <img src="Pakistan/Pakistan_2.JPG" alt="Pakistan">
-                    </div>
-                    <div class="photo-item">
-                        <img src="Pakistan/Pakistan_3.JPG" alt="Pakistan">
-                    </div>
-                    <div class="photo-item">
-                        <img src="Pakistan/Pakistan_4.JPG" alt="Pakistan">
-                    </div>
-                    <div class="photo-item">
-                        <img src="Pakistan/Pakistan_5.JPG" alt="Pakistan">
-                    </div>
-                    <div class="photo-item">
-                        <img src="Pakistan/Pakistan_6.JPG" alt="Pakistan">
-                    </div>
-                </div>
 
-                <h4 style="font-family: 'Crimson Text', serif; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 2rem; color: #2D5016;">Skardu Protest</h4>
-                <div class="photo-grid">
+                    <h4 style="font-family: 'Crimson Text', serif; font-size: 1.5rem; margin-top: 3rem; margin-bottom: 2rem; color: #2D5016;">Skardu Protest</h4>
+                    <div class="photo-grid">
                     <div class="photo-item">
                         <img src="Skardu Protest/SkarduProtest-01.jpg" alt="Skardu Protest">
                     </div>
@@ -655,11 +716,22 @@
                         <img src="Skardu Protest/SkarduProtest-11.jpg" alt="Skardu Protest">
                     </div>
                 </div>
+                </div><!-- end photo-section-content -->
             </div>
 
             <!-- Oman Section -->
             <div id="oman" style="margin-bottom: 4rem;">
-                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 2rem; color: #2D5016;">Oman</h3>
+                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 1rem; color: #2D5016;">Oman</h3>
+                <p class="photo-section-description">Desert landscapes, ancient forts, and coastal beauty from my time exploring Oman.</p>
+                
+                <button class="toggle-photos-btn" onclick="togglePhotoSection('oman')">
+                    Show Photos
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <div class="photo-section-content" id="oman-content">
                 <div class="photo-grid">
                     <div class="photo-item">
                         <img src="Oman/Oman-01.jpg" alt="Oman">
@@ -698,11 +770,22 @@
                         <img src="Oman/Oman-12.jpg" alt="Oman">
                     </div>
                 </div>
+                </div><!-- end photo-section-content -->
             </div>
 
             <!-- India Section -->
             <div id="india" style="margin-bottom: 4rem;">
-                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 2rem; color: #2D5016;">India</h3>
+                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 1rem; color: #2D5016;">India</h3>
+                <p class="photo-section-description">Black and white documentary photography capturing the vibrant street life and people of India.</p>
+                
+                <button class="toggle-photos-btn" onclick="togglePhotoSection('india')">
+                    Show Photos
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <div class="photo-section-content" id="india-content">
                 <div class="photo-grid">
                     <div class="photo-item">
                         <img src="India/India (B&W)-01.jpg" alt="India">
@@ -756,11 +839,22 @@
                         <img src="India/India (B&W)-17.jpg" alt="India">
                     </div>
                 </div>
+                </div><!-- end photo-section-content -->
             </div>
 
             <!-- Other Travel Section -->
             <div id="other-travel" style="margin-bottom: 4rem;">
-                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 2rem; color: #8B2635;">Other Travel</h3>
+                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 1rem; color: #8B2635;">Other Travel</h3>
+                <p class="photo-section-description">Landscapes and moments from travels across the world.</p>
+                
+                <button class="toggle-photos-btn" onclick="togglePhotoSection('other-travel')" style="background: #8B2635;">
+                    Show Photos
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <div class="photo-section-content" id="other-travel-content">
                 <div class="photo-grid">
                     <div class="photo-item">
                         <img src="Landscapes/Landscapes_1.jpg" alt="Landscape">
@@ -793,11 +887,21 @@
                         <img src="Landscapes/Landscapes_10.jpg" alt="Landscape">
                     </div>
                 </div>
+                </div><!-- end photo-section-content -->
             </div>
 
             <!-- Editorial / Portraits Section -->
             <div id="editorial-portraits">
-                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 2rem; color: #8B2635;">Editorial / Portraits</h3>
+                <h3 style="font-family: 'Crimson Text', serif; font-size: 1.8rem; margin-bottom: 1rem; color: #8B2635;">Editorial / Portraits</h3>
+                
+                <button class="toggle-photos-btn" onclick="togglePhotoSection('editorial-portraits')" style="background: #8B2635;">
+                    Show Photos
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                
+                <div class="photo-section-content" id="editorial-portraits-content">
                 <div class="photo-grid">
                     <div class="photo-item">
                         <img src="Editorial/Varya_1.jpg" alt="Portrait">
@@ -836,6 +940,7 @@
                         <img src="Editorial/Annie_6.jpg" alt="Portrait">
                     </div>
                 </div>
+                </div><!-- end photo-section-content -->
             </div>
         </section>
 
@@ -1132,7 +1237,7 @@
                         <li>Python (Beginning Intermediate)</li>
                         <li>Arduino IDE (Beginning Intermediate)</li>
                         <li>WordPress</li>
-                        <li>Web Design</li>
+                        <li>Web Design (ex. this website)</li>
                         <li>Canva</li>
                         <li>Microsoft Office</li>
                         <li>3D Modeling</li>
@@ -1180,6 +1285,22 @@
     </div>
 
     <script>
+        // Toggle photo sections
+        function togglePhotoSection(sectionId) {
+            const content = document.getElementById(sectionId + '-content');
+            const button = event.currentTarget;
+            
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+                button.classList.remove('active');
+                button.innerHTML = 'Show Photos<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>';
+            } else {
+                content.classList.add('active');
+                button.classList.add('active');
+                button.innerHTML = 'Hide Photos<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>';
+            }
+        }
+
         let hoverTimer = null;
         let currentHoveredItem = null;
 
