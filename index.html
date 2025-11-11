@@ -14,7 +14,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #0d0d0d;
+            background: #0f0909;
             color: #e8e8e8;
             overflow-x: hidden;
             line-height: 1.6;
@@ -343,8 +343,8 @@
         }
 
         .tag-green {
-            background: rgba(45, 80, 22, 0.15);
-            color: rgba(127, 176, 105, 0.9);
+            background: rgba(107, 29, 40, 0.15);
+            color: rgba(200, 120, 130, 0.9);
         }
 
         .expandable {
@@ -649,7 +649,7 @@
             display: inline-flex;
             align-items: center;
             padding: 0.8rem 1.5rem;
-            background: #2D5016;
+            background: #6B1D28;
             color: white;
             border: none;
             border-radius: 6px;
@@ -662,7 +662,7 @@
         }
 
         .toggle-photos-btn:hover {
-            background: #3d6b1e;
+            background: #4d1520;
             transform: translateY(-2px);
         }
 
@@ -1125,22 +1125,24 @@
                 <h3 style="font-family: 'Crimson Text', serif; font-size: 1.5rem; margin-bottom: 2rem; color: #8B2635;">Original Songs</h3>
                 <p style="font-size: 0.9rem; color: rgba(232, 232, 232, 0.5); margin-bottom: 1.5rem; font-style: italic;">Written, performed, and produced by Catherine Z. Ward</p>
                 
-                <!-- Studio Portrait -->
-                <div style="margin-bottom: 2rem;">
-                    <img src="Sound Work/Studio Portrait.jpg" alt="Catherine Ward in the studio" style="width: 100%; max-width: 600px; height: auto; border-radius: 8px; display: block; margin: 0 auto;">
+                <!-- Studio Portraits -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; max-width: 900px; margin-left: auto; margin-right: auto;">
+                    <img src="Sound Work/Studio Portrait.jpg" alt="Catherine Ward in the studio" style="width: 100%; height: auto; border-radius: 8px; object-fit: cover;">
+                    <img src="Sound Work/Studio Portrait 2.jpg" alt="Catherine Ward in the studio" style="width: 100%; height: auto; border-radius: 8px; object-fit: cover;">
+                    <img src="Sound Work/Studio Portrait 3.jpg" alt="Catherine Ward in the studio" style="width: 100%; height: auto; border-radius: 8px; object-fit: cover;">
                 </div>
                 
-                <div style="display: grid; gap: 2rem; max-width: 800px;">
-                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 2rem;">
-                        <h4 style="font-family: 'Crimson Text', serif; font-size: 1.3rem; margin-bottom: 1rem; color: #fff;">Flavor - Final Demo</h4>
-                        <audio controls style="width: 100%; margin-top: 1rem;">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; max-width: 800px; margin: 0 auto;">
+                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 1.5rem;">
+                        <h4 style="font-family: 'Crimson Text', serif; font-size: 1.1rem; margin-bottom: 1rem; color: #fff;">Flavor Demo</h4>
+                        <audio controls style="width: 100%;">
                             <source src="Sound Work/Flavor Final Demo.mp3" type="audio/mpeg">
                             Your browser does not support the audio element.
                         </audio>
                     </div>
-                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 2rem;">
-                        <h4 style="font-family: 'Crimson Text', serif; font-size: 1.3rem; margin-bottom: 1rem; color: #fff;">Trying - Final Demo</h4>
-                        <audio controls style="width: 100%; margin-top: 1rem;">
+                    <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 1.5rem;">
+                        <h4 style="font-family: 'Crimson Text', serif; font-size: 1.1rem; margin-bottom: 1rem; color: #fff;">Trying Demo</h4>
+                        <audio controls style="width: 100%;">
                             <source src="Sound Work/Trying Final Demo.m4a" type="audio/mp4">
                             Your browser does not support the audio element.
                         </audio>
